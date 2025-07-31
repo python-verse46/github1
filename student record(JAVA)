@@ -1,0 +1,47 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Map<Integer, String> students = new HashMap<>();
+
+        while (true) {
+            System.out.println("\n1. Add Student  2. View All  3. Delete by ID  4. Exit");
+            System.out.print("Choose option: ");
+            int choice = sc.nextInt();
+            sc.nextLine();
+
+            if (choice == 1) {
+                System.out.print("Enter ID: ");
+                int id = sc.nextInt();
+                sc.nextLine(); // consume newline
+                System.out.print("Enter Name: ");
+                String name = sc.nextLine();
+                students.put(id, name);
+                System.out.println("Student added.");
+            } else if (choice == 2) {
+                if (students.isEmpty()) {
+                    System.out.println("No student records.");
+                } else {
+                    System.out.println("Student List:");
+                    for (Map.Entry<Integer, String> entry : students.entrySet()) {
+                        System.out.println("ID: " + entry.getKey() + ", Name: " + entry.getValue());
+                    }
+                }
+            } else if (choice == 3) {
+                System.out.print("Enter ID to delete: ");
+                int id = sc.nextInt();
+                if (students.remove(id) != null) {
+                    System.out.println("Student deleted.");
+                } else {
+                    System.out.println("ID not found.");
+                }
+            } else if (choice == 4) {
+                System.out.println("Exiting.");
+                break;
+            } else {
+                System.out.println("Invalid choice.");
+            }
+        }
+    }
+}
